@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+/* Semantic Color Tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light theme */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+  --bg-input: #ffffff;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --bg-page: #f8fafc;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.dark {
+  /* Premium Dark Theme - Layered surface system */
+  --background: #0a0e1a; /* Very dark navy base */
+  --foreground: #f1f5f9; /* Bright text for high contrast */
+  --muted-foreground: #94a3b8; /* Muted gray for secondary text */
+  --card: #111827; /* Elevated dark surface */
+  --card-foreground: #f1f5f9;
+  --border: rgba(71, 85, 105, 0.3); /* Subtle border with transparency */
+  --bg-input: #1a1f2e;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --bg-page: #0a0e1a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  color-scheme: light dark;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/* Reusable Card Utility */
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+/* Premium dark card with subtle gradient */
+html.dark .card {
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 24, 39, 0.9),
+    rgba(17, 24, 39, 0.95)
+  );
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphism variant (optional) */
+.glass-card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Table styling */
+table {
+  color: var(--card-foreground);
+}
+
+thead {
+  color: #334155;
+  position: relative;
+  z-index: 1;
+}
+
+thead tr {
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+html.dark thead {
+  color: #e2e8f0;
+}
+
+html.dark thead tr {
+  background-color: #1f2937;
+  border-bottom-color: #334155;
+}
+
+tbody tr {
+  border-bottom-color: var(--border);
+}
+
+tbody tr:hover {
+  background-color: color-mix(in srgb, var(--card) 50%, transparent);
+}
+
+/* Input and form elements */
+input,
+select,
+textarea {
+  color: var(--text-primary);
+  border-color: var(--border);
+  border: 1px solid var(--border);
+}
+
+input {
+  background-color: transparent;
+}
+
+@layer base {
+  input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
 }
+
+/* Focus states */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+
