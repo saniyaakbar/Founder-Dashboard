@@ -390,7 +390,6 @@ export default function ActivityPage() {
                 isOpen={openFilterId === 'status'}
                 onToggle={setOpenFilterId}
                 onSelect={(value) => handleStatusFilterChange(value)}
-                headerRef={tableHeaderRef}
               />
               <ColumnFilterHeader
                 label="Action Type"
@@ -400,7 +399,6 @@ export default function ActivityPage() {
                 isOpen={openFilterId === 'actionType'}
                 onToggle={setOpenFilterId}
                 onSelect={(value) => handleActionTypeFilterChange(value)}
-                headerRef={tableHeaderRef}
               />
             </tr>
           </thead>
